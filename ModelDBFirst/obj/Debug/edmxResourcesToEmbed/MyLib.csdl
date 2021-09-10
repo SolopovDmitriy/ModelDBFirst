@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MyLib" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="MyLibContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AuthorsSet" EntityType="MyLib.Authors" />
+    <EntitySet Name="PublisherSet" EntityType="MyLib.Publisher" />
+    <EntitySet Name="BookSet" EntityType="MyLib.Book" />
+    <AssociationSet Name="AuthorsBook" Association="MyLib.AuthorsBook">
+      <End Role="Authors" EntitySet="AuthorsSet" />
+      <End Role="Book" EntitySet="BookSet" />
+    </AssociationSet>
+    <AssociationSet Name="PublisherBook" Association="MyLib.PublisherBook">
+      <End Role="Publisher" EntitySet="PublisherSet" />
+      <End Role="Book" EntitySet="BookSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fio" Type="String" Nullable="false" />
+    <Property Name="birthDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="MyLib.AuthorsBook" FromRole="Authors" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Publisher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="MyLib.PublisherBook" FromRole="Publisher" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" />
+    <NavigationProperty Name="Authors" Relationship="MyLib.AuthorsBook" FromRole="Book" ToRole="Authors" />
+    <Property Name="Authors_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Publisher" Relationship="MyLib.PublisherBook" FromRole="Book" ToRole="Publisher" />
+    <Property Name="Publisher_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="AuthorsBook">
+    <End Type="MyLib.Authors" Role="Authors" Multiplicity="1" />
+    <End Type="MyLib.Book" Role="Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="Authors_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PublisherBook">
+    <End Type="MyLib.Publisher" Role="Publisher" Multiplicity="1" />
+    <End Type="MyLib.Book" Role="Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="Publisher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,13 @@
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\ModelDBFirst.exe.config
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\ModelDBFirst.exe
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\ModelDBFirst.pdb
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\EntityFramework.dll
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\EntityFramework.SqlServer.dll
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\EntityFramework.xml
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\EntityFramework.SqlServer.xml
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\bin\Debug\ru\EntityFramework.resources.dll
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\obj\Debug\ModelDBFirst.csprojAssemblyReference.cache
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\obj\Debug\ModelDBFirst.csproj.CoreCompileInputs.cache
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\obj\Debug\ModelDBFirst.csproj.CopyComplete
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\obj\Debug\ModelDBFirst.exe
+D:\c#\lesson87\ModelDBFirst\ModelDBFirst\obj\Debug\ModelDBFirst.pdb

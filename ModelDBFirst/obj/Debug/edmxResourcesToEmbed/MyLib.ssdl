@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyLib.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MyLibStoreContainer">
+    <EntitySet Name="AuthorsSet" EntityType="MyLib.Store.AuthorsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PublisherSet" EntityType="MyLib.Store.PublisherSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookSet" EntityType="MyLib.Store.BookSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AuthorsBook" Association="MyLib.Store.AuthorsBook">
+      <End Role="Authors" EntitySet="AuthorsSet" />
+      <End Role="Book" EntitySet="BookSet" />
+    </AssociationSet>
+    <AssociationSet Name="PublisherBook" Association="MyLib.Store.PublisherBook">
+      <End Role="Publisher" EntitySet="PublisherSet" />
+      <End Role="Book" EntitySet="BookSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AuthorsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="birthDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PublisherSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AuthorsId" Type="int" Nullable="false" />
+    <Property Name="PublisherId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AuthorsBook">
+    <End Role="Authors" Type="MyLib.Store.AuthorsSet" Multiplicity="1" />
+    <End Role="Book" Type="MyLib.Store.BookSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="AuthorsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PublisherBook">
+    <End Role="Publisher" Type="MyLib.Store.PublisherSet" Multiplicity="1" />
+    <End Role="Book" Type="MyLib.Store.BookSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="PublisherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
